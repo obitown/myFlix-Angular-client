@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 //declaring the api url that will provide data for the client app
-const apiUrl = 'https://obi-flix.herokuapp.com'
+const apiUrl = 'https://obi-flix.herokuapp.com/'
 const token = localStorage.getItem('token');
 const username = localStorage.getItem('Username');
 
