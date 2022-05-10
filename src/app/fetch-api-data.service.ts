@@ -17,9 +17,7 @@ export class UserRegistrationService {
 
   // inject the httpClient module to the constructor params
   // this will provide httpClient to the entire class, making it available viea this.http
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) { }
 
   // making the api call for the user reg. endpoint
   public userRegistration(userDetails: any): Observable<any> {
@@ -38,7 +36,8 @@ export class UserRegistrationService {
   }
 
   //get list of all movies
-  getAllMovies(): Observable<any> {
+  public getAllMovies(): Observable<any> {
+    const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
