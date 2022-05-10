@@ -17,7 +17,14 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
+import { RouterModule, Routes } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon'
 
+const appRoutes: Routes = [
+  { path: 'welcome', component: WelcomePageComponent },
+  { path: 'movies', component: MovieCardComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }
+]
 
 
 @NgModule({
@@ -29,6 +36,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     WelcomePageComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -40,6 +48,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
