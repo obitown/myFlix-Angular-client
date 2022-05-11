@@ -92,8 +92,8 @@ export class UserRegistrationService {
   }
 
   //add to users 'favorite movies'
-  addFavoriteMovies(): Observable<any> {
-    return this.http.get(apiUrl + `users/${username}/movies/:movieId`, {
+  public addFavoriteMovies(): Observable<any> {
+    return this.http.post(apiUrl + `users/${username}/movies/:movieId`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
