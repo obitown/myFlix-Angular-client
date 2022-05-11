@@ -25,4 +25,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['welcome']);
   }
 
+  toProfile(): void {
+    this.router.navigate(['profile'])
+  }
+
 }
