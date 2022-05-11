@@ -29,4 +29,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['profile'])
   }
 
+  toMovies(): void {
+    this.router.navigate(['movies'])
+  }
+
 }
