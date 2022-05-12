@@ -6,6 +6,7 @@
         </mat-card-header>
         <mat-card-content>
             <h2>User Information</h2>
+            <h3>Username: {{user.Username}}</h3>
             <h3>Email: {{user.Email}}</h3>
             <h3>Brthday: {{user.Birthday | date:'MM-dd-YYYY'}}</h3>
         </mat-card-content>
@@ -17,14 +18,5 @@
                 Delete
             </button>
         </mat-card-footer>
-    </mat-card>
-    <br />
-    <mat-card>
-        <mat-card-header>
-            <h1>{{user.Username}}'s Favorite Movies</h1>
-        </mat-card-header>
-        <mat-card-content>
-
-        </mat-card-content>
     </mat-card>
 </div>
