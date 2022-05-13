@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserRegistrationService } from '../fetch-api-data.service';
+import { GenreCardComponent } from '../genre-card/genre-card.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -8,10 +11,16 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 })
 export class MovieCardComponent {
   movies: any[] = [];
-  constructor(public fetchApiData: UserRegistrationService) { }
+  genres: any[] = [];
+  constructor(
+    public fetchApiData: UserRegistrationService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
+  ) { }
 
   ngOnInit(): void {
     this.getMovies();
+    this.getGenre()
   }
 
   getMovies(): void {
@@ -19,6 +28,23 @@ export class MovieCardComponent {
       this.movies = resp;
       console.log(this.movies);
       return this.getMovies;
+    })
+  }
+
+  getGenre(): void {
+    this.fetchApiData.getGenre().subscribe((resp: any) => {
+      this.genres = resp;
+      console.log(this.genres);
+      return this.getGenre;
+    })
+  }
+  openGenre(name: string, description: string): void {
+    this.dialog.open(GenreCardComponent, {
+      data: { name, description },
+      width: '550px'
+    })
+    this.snackBar.open(`${name} card opened`, 'OK', {
+      duration: 2000,
     })
   }
 

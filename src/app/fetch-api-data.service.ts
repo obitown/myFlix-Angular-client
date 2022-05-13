@@ -76,6 +76,7 @@ export class UserRegistrationService {
         Authorization: 'Bearer ' + token,
       })
     }).pipe(
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
@@ -146,6 +147,11 @@ export class UserRegistrationService {
     }).pipe(
       catchError(this.handleError)
     );
+  }
+
+  private extractResponseData(res: any): any {
+    const body = res;
+    return body || {};
   }
 
 
