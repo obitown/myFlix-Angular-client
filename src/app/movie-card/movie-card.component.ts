@@ -50,9 +50,9 @@ export class MovieCardComponent {
     })
   }
 
-  openDirector(name: string, bio: string): void {
+  openDirector(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorCardComponent, {
-      data: { name, bio },
+      data: { name, bio, birth },
       width: '550px'
     })
     this.snackBar.open(`${name} card opened`, 'OK', {
