@@ -14,6 +14,8 @@ import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component'
 export class MovieCardComponent {
   movies: any[] = [];
   genres: any[] = [];
+  favMovies: any[] = [];
+
   constructor(
     public fetchApiData: UserRegistrationService,
     public dialog: MatDialog,
@@ -22,7 +24,7 @@ export class MovieCardComponent {
 
   ngOnInit(): void {
     this.getMovies();
-    this.getGenre()
+    this.getFavouriteMovies();
   }
 
   getMovies(): void {
@@ -33,13 +35,15 @@ export class MovieCardComponent {
     })
   }
 
-  getGenre(): void {
-    this.fetchApiData.getGenre().subscribe((resp: any) => {
-      this.genres = resp;
-      console.log(this.genres);
-      return this.getGenre;
+
+
+  getFavouriteMovies(): void {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
+      this.favMovies = resp.favMovies
+      console.log('test', this.favMovies)
     })
   }
+
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: { name, description },
@@ -70,5 +74,14 @@ export class MovieCardComponent {
     })
   }
 
+  addFavouriteMovie(title: string): void {
+    this.fetchApiData.addFavouriteMovie().subscribe((resp: any) => {
+      this.snackBar.open(`${title} has been added to your favourites!`, 'OK', {
+        duration: 3000,
+      });
+      this.ngOnInit();
+    });
+    return this.getFavouriteMovies();
+  }
 
 }

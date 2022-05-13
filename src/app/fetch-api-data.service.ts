@@ -81,19 +81,8 @@ export class UserRegistrationService {
     );
   }
 
-  //get users 'favorite movies' list
-  getFavoriteMovies(): Observable<any> {
-    return this.http.get(apiUrl + `users/${username}/movies`, {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
-      })
-    }).pipe(
-      catchError(this.handleError)
-    );
-  }
-
   //add to users 'favorite movies'
-  public addFavoriteMovies(): Observable<any> {
+  public addFavouriteMovie(): Observable<any> {
     return this.http.post(apiUrl + `users/${username}/movies/:movieId`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
@@ -104,7 +93,7 @@ export class UserRegistrationService {
   }
 
   //remove movie from users 'favorite movies'
-  deleteFavoriteMovies(): Observable<any> {
+  deleteFavouriteMovies(): Observable<any> {
     return this.http.delete(apiUrl + `users/${username}/movies/:movieId`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
