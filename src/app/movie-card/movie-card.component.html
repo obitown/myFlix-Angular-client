@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
+<h1>All Movies</h1>
 <div style="display: flex;">
     <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;">
+
         <mat-card-header>
             <mat-card-title>{{movie.Title}}</mat-card-title>
             <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
@@ -10,13 +12,25 @@
             <button mat-button (click)="openGenre(movie.Genre.Name, movie.Genre.Description)">
                 Genre
             </button>
-            <button mat-button>
+            <button mat-button (click)="openDirector(movie.Director.Name, movie.Director.Description)">
                 Director
             </button>
-            <button mat-button>
+            <button mat-button (click)="openSynopsis(movie.Title, movie.Description)">
                 Synopsis
             </button>
             <mat-icon>favorite_border</mat-icon>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<h1>Favorite Movies</h1>
+<div>
+    <mat-card>
+        <mat-card-header>
+
+        </mat-card-header>
+        <img />
+        <mat-card-actions>
+
         </mat-card-actions>
     </mat-card>
 </div>
