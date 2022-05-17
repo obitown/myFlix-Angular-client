@@ -12,6 +12,7 @@ import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component'
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent {
+  user: any = {}
   movies: any[] = [];
   genres: any[] = [];
   favMovies: any[] = [];
@@ -24,7 +25,8 @@ export class MovieCardComponent {
 
   ngOnInit(): void {
     this.getMovies();
-    this.getFavouriteMovies();
+    this.getFavoriteMovies();
+    this.getUser();
   }
 
   getMovies(): void {
@@ -37,12 +39,12 @@ export class MovieCardComponent {
 
 
 
-  getFavouriteMovies(): void {
-    this.fetchApiData.getUser().subscribe((resp: any) => {
-      this.favMovies = resp.favMovies
-      console.log('test', this.favMovies)
-    })
-  }
+  // getFavouriteMovies(): void {
+  //   this.fetchApiData.getUser().subscribe((resp: any) => {
+  //     this.favMovies = resp.favMovies
+  //     console.log('test', this.favMovies)
+  //   })
+  // }
 
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
@@ -74,14 +76,40 @@ export class MovieCardComponent {
     })
   }
 
-  addFavouriteMovie(title: string): void {
-    this.fetchApiData.addFavouriteMovie().subscribe((resp: any) => {
-      this.snackBar.open(`${title} has been added to your favourites!`, 'OK', {
-        duration: 3000,
+  addToUserFavs(id: string, Title: string): void {
+    console.log(Title);
+    console.log(id)
+    this.fetchApiData.addFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open(`${Title} added to favorite movies.`, 'OK', {
+        duration: 2000,
+
       });
+      console.log(res)
       this.ngOnInit();
     });
-    return this.getFavouriteMovies();
   }
+
+  getUser(): void {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
+      this.user = resp;
+      console.log(this.user);
+    });
+    // return this.user
+  }
+
+  getFavoriteMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+      this.movies = resp;
+      this.movies.forEach((movie: any) => {
+        if (this.user.FavoriteMovies.includes(movie._id)) {
+          this.favMovies.push(movie);
+        }
+      });
+    });
+    console.log(this.favMovies);
+  }
+
+
+
 
 }
