@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 //declaring the api url that will provide data for the client app
 const apiUrl = 'https://obi-flix.herokuapp.com/'
 const token = localStorage.getItem('token');
-const username = localStorage.getItem('Username');
+const username = localStorage.getItem('user');
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +43,7 @@ export class UserRegistrationService {
         Authorization: 'Bearer ' + token,
       })
     }).pipe(
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
@@ -81,6 +82,19 @@ export class UserRegistrationService {
     );
   }
 
+  getFavoriteMovies(): Observable<any> {
+    const token = localStorage.getItem('token')
+    const username = localStorage.getItem('user')
+    return this.http.get(apiUrl + `users/${username}`, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      })
+    }).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    )
+  }
+
   //add to users 'favorite movies'
   public addFavoriteMovies(MovieID: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -94,7 +108,7 @@ export class UserRegistrationService {
   }
 
   //remove movie from users 'favorite movies'
-  deleteFavouriteMovies(MovieID: string): Observable<any> {
+  deleteFavoriteMovies(MovieID: string): Observable<any> {
     const token = localStorage.getItem('token')
     const username = localStorage.getItem('user')
 
@@ -117,6 +131,7 @@ export class UserRegistrationService {
         Authorization: 'Bearer ' + token,
       })
     }).pipe(
+      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }

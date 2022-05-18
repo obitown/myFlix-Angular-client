@@ -34,6 +34,7 @@ export class MovieCardComponent {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.user = resp;
     });
+    console.log(this.user)
   }
 
   getMovies(): void {
@@ -85,7 +86,7 @@ export class MovieCardComponent {
   }
 
   removeFavorite(id: string, Title: string): void {
-    this.fetchApiData.deleteFavouriteMovies(id).subscribe((resp: any) => {
+    this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
       this.snackBar.open(`${Title} removed from favorites.`, 'OK', {
         duration: 2000,
       })
