@@ -23,7 +23,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
 import { GenreCardComponent } from './genre-card/genre-card.component';
-import { SynopsisCardComponent } from './synopsis-card/synopsis-card.component'
+import { SynopsisCardComponent } from './synopsis-card/synopsis-card.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component'
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     ProfileViewComponent,
     DirectorCardComponent,
     GenreCardComponent,
-    SynopsisCardComponent
+    SynopsisCardComponent,
+    ProfileEditComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

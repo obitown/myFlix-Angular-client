@@ -74,9 +74,9 @@ export class MovieCardComponent {
     })
   }
 
-  addFavorite(id: string, Title: string): void {
+  addFavorite(id: string): void {
     this.fetchApiData.addFavoriteMovies(id).subscribe((resp: any) => {
-      this.snackBar.open(`${Title} added to favorites.`, 'OK', {
+      this.snackBar.open(`Movie ADDED to favorites.`, 'OK', {
         duration: 2000,
 
       });
@@ -85,9 +85,9 @@ export class MovieCardComponent {
     });
   }
 
-  removeFavorite(id: string, Title: string): void {
+  removeFavorite(id: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
-      this.snackBar.open(`${Title} removed from favorites.`, 'OK', {
+      this.snackBar.open(`Movie REMOVED from favorites.`, 'OK', {
         duration: 2000,
       })
       this.ngOnInit();
