@@ -37,15 +37,6 @@ export class MovieCardComponent {
     })
   }
 
-
-
-  // getFavouriteMovies(): void {
-  //   this.fetchApiData.getUser().subscribe((resp: any) => {
-  //     this.favMovies = resp.favMovies
-  //     console.log('test', this.favMovies)
-  //   })
-  // }
-
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: { name, description },
@@ -76,15 +67,13 @@ export class MovieCardComponent {
     })
   }
 
-  addToUserFavs(id: string, Title: string): void {
-    console.log(Title);
-    console.log(id)
+  addFavorite(id: string, Title: string): void {
     this.fetchApiData.addFavoriteMovies(id).subscribe((res: any) => {
       this.snackBar.open(`${Title} added to favorite movies.`, 'OK', {
         duration: 2000,
 
       });
-      console.log(res)
+
       this.ngOnInit();
     });
   }
