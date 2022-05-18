@@ -106,7 +106,4 @@ export class MovieCardComponent {
     console.log(this.favMovies);
   }
 
-
-
-
 }
