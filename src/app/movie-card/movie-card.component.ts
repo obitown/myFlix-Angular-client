@@ -25,14 +25,20 @@ export class MovieCardComponent {
 
   ngOnInit(): void {
     this.getMovies();
-    this.getFavoriteMovies();
     this.getUser();
+    this.getFavoriteMovies();
+
+  }
+
+  getUser(): void {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
+      this.user = resp;
+    });
   }
 
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
       return this.getMovies;
     })
   }
@@ -68,8 +74,8 @@ export class MovieCardComponent {
   }
 
   addFavorite(id: string, Title: string): void {
-    this.fetchApiData.addFavoriteMovies(id).subscribe((res: any) => {
-      this.snackBar.open(`${Title} added to favorite movies.`, 'OK', {
+    this.fetchApiData.addFavoriteMovies(id).subscribe((resp: any) => {
+      this.snackBar.open(`${Title} added to favorites.`, 'OK', {
         duration: 2000,
 
       });
@@ -78,12 +84,13 @@ export class MovieCardComponent {
     });
   }
 
-  getUser(): void {
-    this.fetchApiData.getUser().subscribe((resp: any) => {
-      this.user = resp;
-      console.log(this.user);
-    });
-    // return this.user
+  removeFavorite(id: string, Title: string): void {
+    this.fetchApiData.deleteFavouriteMovies(id).subscribe((resp: any) => {
+      this.snackBar.open(`${Title} removed from favorites.`, 'OK', {
+        duration: 2000,
+      })
+      this.ngOnInit();
+    })
   }
 
   getFavoriteMovies(): void {

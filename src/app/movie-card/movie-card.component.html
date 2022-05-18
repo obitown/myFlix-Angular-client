@@ -36,7 +36,7 @@
         </mat-card-header>
         <img src={{movie.ImagePath}} alt={{movie.Title}} />
         <mat-card-actions>
-            <button>
+            <button (click)="removeFavorite(movie._id, movie.Title)">
                 <mat-icon>favorite</mat-icon>
             </button>
         </mat-card-actions>
