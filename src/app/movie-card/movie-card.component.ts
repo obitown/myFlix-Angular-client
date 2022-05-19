@@ -31,10 +31,14 @@ export class MovieCardComponent {
   }
 
   getUser(): void {
-    this.fetchApiData.getUser().subscribe((resp: any) => {
-      this.user = resp;
-    });
-    console.log(this.user)
+    const username = localStorage.getItem('user');
+    if (username) {
+      this.fetchApiData.getUser().subscribe((resp: any) => {
+        this.user = resp
+        console.log(this.user);
+        return this.user;
+      })
+    }
   }
 
   getMovies(): void {
@@ -95,15 +99,16 @@ export class MovieCardComponent {
   }
 
   getFavoriteMovies(): void {
+    let movies: any[] = []
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
       this.movies.forEach((movie: any) => {
         if (this.user.FavoriteMovies.includes(movie._id)) {
-          this.favMovies.push(movie);
+          this.favMovies.push(movie)
+          console.log(movie)
         }
-      });
-    });
-    console.log(this.favMovies);
+      })
+    })
   }
 
 }
