@@ -29,9 +29,9 @@
     <mat-card *ngFor="let movie of favMovies;" style="flex: 1 1 auto;">
         <mat-card-header>
             <mat-card-title>Calling movie.Title: </mat-card-title>
-            <mat-card-content>{{movie.Title}}</mat-card-content>
-            <mat-card-title>Calling movies: </mat-card-title>
-            <mat-card-content>{{movie}}</mat-card-content>
+            <mat-card-subtitle>{{movie.Title}}</mat-card-subtitle>
+            <mat-card-title>Calling movie: </mat-card-title>
+            <mat-card-subtitle>{{movie}}</mat-card-subtitle>
 
         </mat-card-header>
 
