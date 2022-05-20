@@ -28,12 +28,15 @@
 <div style="display: flex;">
     <mat-card *ngFor="let movie of favMovies;" style="flex: 1 1 auto;">
         <mat-card-header>
-            <mat-card-title>{{movie.Title}}</mat-card-title>
-            <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+            <mat-card-title>Calling movie.Title: </mat-card-title>
+            <mat-card-content>{{movie.Title}}</mat-card-content>
+            <mat-card-title>Calling movies: </mat-card-title>
+            <mat-card-content>{{movie}}</mat-card-content>
+
         </mat-card-header>
-        <img src={{movie.ImagePath}} alt={{movie.Title}} />
+
         <mat-card-actions>
-            <button (click)="removeFavorite(movie._id)">
+            <button (click)="removeFavorite(movie)">
                 <mat-icon>favorite</mat-icon>
             </button>
         </mat-card-actions>

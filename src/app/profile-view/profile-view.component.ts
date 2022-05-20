@@ -48,15 +48,8 @@ export class ProfileViewComponent implements OnInit {
   }
 
   getFavoriteMovies(): void {
-    let movies: any[] = []
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
-      this.movies.forEach((movie: any) => {
-        if (this.user.FavoriteMovies.includes(movie._id)) {
-          this.favMovies.push(movie)
-          console.log(movie)
-        }
-      })
+    this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
+      this.favMovies = resp
     })
   }
 

@@ -101,7 +101,9 @@ export class MovieCardComponent {
   getFavoriteMovies(): void {
     this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
       this.favMovies = resp
+      console.log(this.favMovies)
     })
+
   }
 
 }
