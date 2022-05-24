@@ -14,7 +14,10 @@ export class ProfileEditComponent implements OnInit {
   user: any = {}
 
   @Input() userData: any = {
-    Username: this.user.Username
+    Username: this.user.Username,
+    Email: this.user.Email,
+    Password: this.user.Password,
+    Birthday: this.user.Birthday,
   };
 
   constructor(
