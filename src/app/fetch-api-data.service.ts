@@ -137,14 +137,16 @@ export class UserRegistrationService {
   }
 
   //change users details
-  editUserProfile(userData: object): Observable<any> {
-    return this.http.put(apiUrl + `users/${username}`, userData, {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
+  editUserProfile(userData: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+    return this.http
+      .put(apiUrl + `users/${username}`, userData, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+        }),
       })
-    }).pipe(
-      catchError(this.handleError)
-    );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //delete users profile
