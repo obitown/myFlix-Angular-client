@@ -60,7 +60,18 @@ export class ProfileViewComponent implements OnInit {
       })
       this.ngOnInit();
     })
-
+  }
+  deleteProfile(): void {
+    if (confirm('Are you sure you want to delete your account? This cannnot be undone.')) {
+      this.router.navigate(['welcome']).then(() => {
+        this.snackBar.open('You have successfully deleted your account!', 'OK', {
+          duration: 2000
+        });
+      })
+      this.fetchApiData.deleteUserProfile().subscribe((resp) => {
+        localStorage.clear();
+      });
+    }
   }
 
 }
