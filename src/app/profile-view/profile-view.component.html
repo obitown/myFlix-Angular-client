@@ -1,11 +1,13 @@
 <app-navbar></app-navbar>
-<div>
+<div class="profileView">
     <mat-card>
-        <mat-card-header>
-            <h1>{{user.Username}}'s Profile</h1>
-        </mat-card-header>
-        <mat-card-content>
+        <mat-card-title>
+            {{user.Username}}'s Profile
+        </mat-card-title>
+        <mat-card-subtitle>
             <h2>User Information</h2>
+        </mat-card-subtitle>
+        <mat-card-content>
             <h3>Username: {{user.Username}}</h3>
             <h3>Email: {{user.Email}}</h3>
             <h3>Brthday: {{user.Birthday | date:'MM-dd-YYYY'}}</h3>
