@@ -35,7 +35,6 @@ export class MovieCardComponent {
     if (username) {
       this.fetchApiData.getUser().subscribe((resp: any) => {
         this.user = resp
-        console.log(this.user);
         return this.user;
       })
     }
@@ -100,8 +99,8 @@ export class MovieCardComponent {
 
   getFavoriteMovies(): void {
     this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
-      this.favMovies = resp
-      console.log(this.favMovies)
+      const favs = this.movies.filter(x => resp.includes(x._id));
+      this.favMovies = favs;
     })
 
   }
