@@ -1,0 +1,23 @@
+img {
+    width: 250px;
+
+}
+
+.movieCard {
+    display: flex;
+    flex-direction: row;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+button {
+    background-color: rgb(182, 182, 182);
+}
+
+app-navbar {
+    position: fixed;
+}

@@ -8,9 +8,9 @@ describe('GenreCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GenreCardComponent ]
+      declarations: [GenreCardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
