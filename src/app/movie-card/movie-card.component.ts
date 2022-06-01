@@ -30,6 +30,11 @@ export class MovieCardComponent {
 
   }
 
+  /**
+   * get users details
+   * @returns Users Info in JSON format
+   * @function getUser
+   */
   getUser(): void {
     const username = localStorage.getItem('user');
     if (username) {
@@ -40,6 +45,11 @@ export class MovieCardComponent {
     }
   }
 
+  /**
+   * gets list of ALL movies
+   * @returns all movies
+   * @function getAllMovies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -47,6 +57,11 @@ export class MovieCardComponent {
     })
   }
 
+  /**
+   * dispalys Genre information of selected movie
+   * @param name {string}
+   * @param description {string}
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: { name, description },
@@ -57,6 +72,12 @@ export class MovieCardComponent {
     })
   }
 
+  /**
+   * dispalys Director information of selected movie
+   * @param name {string}
+   * @param bio {string}
+   * @param birth {string}
+   */
   openDirector(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: { name, bio, birth },
@@ -67,6 +88,11 @@ export class MovieCardComponent {
     })
   }
 
+  /**
+   * dispalys Synopsis information of selected movie
+   * @param title {string}
+   * @param description {string}
+   */
   openSynopsis(title: string, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
       data: { title, description },
@@ -77,6 +103,12 @@ export class MovieCardComponent {
     })
   }
 
+  /**
+   * adds movie to users favorite list
+   * @function addFavoriteMovies
+   * @param id {string}
+   * @returns movie object in JSON format
+   */
   addFavorite(id: string): void {
     this.fetchApiData.addFavoriteMovies(id).subscribe((resp: any) => {
       this.snackBar.open(`Movie ADDED to favorites.`, 'OK', {
@@ -88,6 +120,12 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * deletes movie from users favorite list
+   * @function deleteFavoriteMovies
+   * @param id {string}
+   * @returns updated FavoriteMovie list in JSON format
+   */
   removeFavorite(id: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
       this.snackBar.open(`Movie REMOVED from favorites.`, 'OK', {
@@ -97,6 +135,11 @@ export class MovieCardComponent {
     })
   }
 
+  /**
+   * gets users favorite movies
+   * @function getFavoriteMovies
+   * @returns users FavoriteMovies in JSON format
+   */
   getFavoriteMovies(): void {
     this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
       const favs = this.movies.filter(x => resp.includes(x._id));

@@ -209,7 +209,11 @@ export class UserRegistrationService {
     return body || {};
   }
 
-  // Error handling function
+  /**
+   * Error handling function
+   * @param error 
+   * @returns error status code
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occured:', error.error.message);

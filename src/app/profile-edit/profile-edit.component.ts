@@ -31,7 +31,11 @@ export class ProfileEditComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
   }
-
+  /**
+   * Gets user Profile data
+   * @returns user data
+   * @function getUser
+   */
   getUser(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUser().subscribe((resp: any) => {
@@ -41,6 +45,12 @@ export class ProfileEditComponent implements OnInit {
     });
   }
 
+
+  /**
+   * updates logged in users profile data/info
+   * @returns users updated data
+   * @function editUserProfile
+   */
   editUser(): void {
     this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
       this.dialogRef.close();

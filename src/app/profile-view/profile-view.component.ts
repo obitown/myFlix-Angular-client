@@ -27,9 +27,13 @@ export class ProfileViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-    this.getFavoriteMovies();
   }
 
+  /**
+   * get users details
+   * @returns Users Info in JSON format
+   * @function getUser
+   */
   getUser(): void {
     const username = localStorage.getItem('user');
     if (username) {
@@ -41,26 +45,20 @@ export class ProfileViewComponent implements OnInit {
     }
   }
 
+  /**
+   * display ProfileEditComponent 
+   */
   editProfileDialog(): void {
     this.dialog.open(ProfileEditComponent, {
       width: '500px'
     })
   }
 
-  getFavoriteMovies(): void {
-    this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
-      this.favMovies = resp
-    })
-  }
-
-  removeFavorite(id: string): void {
-    this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
-      this.snackBar.open('Movie Removed', 'OK', {
-        duration: 3500,
-      })
-      this.ngOnInit();
-    })
-  }
+  /**
+   * deletes the users profile and reloads Welcome Page Component
+   * @returns cleared local storage
+   * @function deleteUserProfile
+   */
   deleteProfile(): void {
     if (confirm('Are you sure you want to delete your account? This cannnot be undone.')) {
       this.router.navigate(['welcome']).then(() => {
